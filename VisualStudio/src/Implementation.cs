@@ -73,7 +73,7 @@ namespace Binoculars
 
         private void ShowOverlay()
         {
-            texture = UIUtils.CreateOverlay((Texture2D)Resources.Load("Binoculars_Overlay"));
+            texture = UIUtils.CreateOverlay(Resources.Load("Binoculars_Overlay")?.Cast<Texture2D>());
         }
 
         private void StartZoom()
@@ -87,7 +87,7 @@ namespace Binoculars
         private void ZoomCamera()
         {
             vp_FPSCamera camera = GameManager.GetVpFPSCamera();
-            originalFOV = ModUtils.GetFieldValue<float>(camera, "m_RenderingFieldOfView");
+            originalFOV = camera.m_RenderingFieldOfView;//ModUtils.GetFieldValue<float>(camera, "m_RenderingFieldOfView");
             camera.ToggleZoom(true);
             camera.SetFOVFromOptions(originalFOV * 0.1f);
         }
