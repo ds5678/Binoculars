@@ -4,13 +4,15 @@
                             "German" : "Fernglas",
                             "Russian" : "Бинокль",
                             "Turkish" : "Dürbün",
-							"Polish" : "Lornetka"
+							"Polish" : "Lornetka",
+                            "French (France)" : "Jumelles"
     },
     "GAMEPLAY_BinocularsDescription" : {
                             "English" : "Old binoculars, that still seem to work quite well.",
                             "German" : "Ein altes Fernglas, das immer noch gut zu funktionieren scheint.",
                             "Russian" : "Старый бинокль, который до сих пор, кажется, работает довольно хорошо.",
                             "Turkish" : "Eski bir dürbün, hala oldukça iyi gibi görünüyor.",
-							"Polish" : "Stara lornetka, nadal działa całkiem dobrze"
+							"Polish" : "Stara lornetka, nadal działa całkiem dobrze",
+                            "French (France)" : "De vieilles jumelles, qui semblent encore fonctionner assez bien."
     }
 }
