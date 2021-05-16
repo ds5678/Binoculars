@@ -29,6 +29,7 @@ If you send me your translations, I'll update and add them to the mod so that mo
 2. If you haven't done so already, download the latest version of `ModComponent.dll` from its [releases page](https://github.com/ds5678/ModComponent/releases)
 3. If you haven't done so already, download the latest version of `ModSettings.dll` from its [release page](https://github.com/zeobviouslyfakeacc/ModSettings/releases).
 4. Move `ModComponent.dll` and `ModSettings.dll` into the Mods folder in your TLD install directory.
-5. Run The Long Dark once. It should generate a subfolder in your mods folder.
-6. Download `Binoculars.modcomponent` from the [releases page](https://github.com/ds5678/Binoculars/releases)
-7. Move `Binoculars.modcomponent` into the `ModComponentZips` folder within your mods folder.
+5. Run The Long Dark once. It should generate a subfolder called `ModComponentZips` in your mods folder.
+6. Download `Binoculars.dll` and `Binoculars.modcomponent` from the [releases page](https://github.com/ds5678/Binoculars/releases)
+7. Move `Binoculars.dll` into your mods folder.
+8. Move `Binoculars.modcomponent` into the `ModComponentZips` folder within your mods folder.
