@@ -25,7 +25,7 @@
                             "ImplementationType" : "Binoculars.AnimatedBinoculars",
                             "EquippingAudio" : "Play_DrawRifle"
     },
-    "ModFireStarterComponent" : {
+    "ModFireStarterBehaviour" : {
                             "DestroyedOnUse" : false,
                             "NumberOfUses" : 0,
                             "OnUseSoundEvent" : "",
@@ -33,6 +33,7 @@
                             "RuinedAfterUse" : false,
                             "SecondsToIgniteTinder" : 10,
                             "SecondsToIgniteTorch" : 10,
-                            "SuccessModifier" : 0
-                        }
+                            "SuccessModifier" : 0,
+                            "DurationOffset" : 0
+    }
 }

@@ -1,4 +1,4 @@
-﻿using ModComponentUtils;
+﻿using ModComponent.Utils;
 using UnityEngine;
 
 namespace Binoculars
@@ -18,7 +18,7 @@ namespace Binoculars
 		bool runIdleCoroutine = true;
 		private static readonly string[] states = new string[] { "offscreen", "bring", "putDown", "idleRare", "idleTree", "ready", "lensZoom", "lensZoom_back", "ready_back" };
 		bool isZoomed = false;
-		ModComponentAPI.EquippableModComponent EquippableModComponent;
+		ModComponent.API.Components.ModBaseEquippableComponent EquippableModComponent;
 
 		public void OnPrimaryAction()
 		{
