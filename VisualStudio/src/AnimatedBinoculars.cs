@@ -22,19 +22,28 @@ namespace Binoculars
 
 		public void OnPrimaryAction()
 		{
-			anim?.SetTrigger("idle_twiddle");
+			if(anim != null)
+            {
+				anim.SetTrigger("idle_twiddle");
+			}
 		}
 
 		public void OnSecondaryAction()
 		{
 			if (isZoomed)
 			{
-				anim?.SetBool("active", false);
+				if (anim != null)
+				{
+					anim.SetBool("active", false);
+				}
 				isZoomed = false;
 			}
 			else
 			{
-				anim?.SetBool("active", true);
+				if (anim != null)
+				{
+					anim.SetBool("active", true);
+				}
 				isZoomed = true;
 			}
 		}
@@ -45,7 +54,10 @@ namespace Binoculars
 			anim = EquippableModComponent?.EquippedModel?.GetComponent<Animator>();
 			InitializeGameObjects();
 			ShowButtonPopups();
-			anim?.SetTrigger("bring");
+			if (anim != null)
+			{
+				anim.SetTrigger("bring");
+			}
 
 			MelonLoader.MelonCoroutines.Start(InvokeRepeating(IdleFluc, 0.0f, 0.1f));
 		}
@@ -55,7 +67,10 @@ namespace Binoculars
 			runIdleCoroutine = false;
 			isZoomed = false;
 			EndZoom();
-			anim?.SetTrigger("put_down");
+			if (anim != null)
+			{
+				anim.SetTrigger("put_down");
+			}
 		}
 
 		public void OnControlModeChangedWhileEquipped()
@@ -63,7 +78,10 @@ namespace Binoculars
 			runIdleCoroutine = false;
 			isZoomed = false;
 			EndZoom();
-			anim?.SetTrigger("put_down");
+			if (anim != null)
+			{
+				anim.SetTrigger("put_down");
+			}
 		}
 
 		System.Collections.IEnumerator InvokeRepeating(System.Action action, float delay, float interval)
@@ -79,7 +97,8 @@ namespace Binoculars
 
 		void IdleFluc()
 		{
-			if (anim is null) return;
+			if (anim == null)
+				return;
 
 			if (f < 1.0f)
 			{
@@ -88,7 +107,7 @@ namespace Binoculars
 				if (a > 0.9f) i = 1;
 				if (a < 0.1f) i = 0;
 
-				anim?.SetFloat("idle_random", a);
+				anim.SetFloat("idle_random", a);
 
 				f += 0.1f;
 			}
@@ -105,7 +124,9 @@ namespace Binoculars
 		{
 			try
 			{
-				if (anim?.runtimeAnimatorController is null) return;
+				if (anim == null || anim.runtimeAnimatorController == null) 
+					return;
+
 				anim.GetAnimatorStateInfo(0, StateInfoIndex.CurrentState, out AnimatorStateInfo info);
 
 				if (info.IsName("lensZoom") && runIdleCoroutine) isZoomed = true;
@@ -119,7 +140,7 @@ namespace Binoculars
 
 		private void InitializeGameObjects()
 		{
-			if (EquippableModComponent?.EquippedModel is null) return;
+			if (EquippableModComponent == null || EquippableModComponent.EquippedModel == null) return;
 			switch (PlayerUtils.GetPlayerGender())
 			{
 				case PlayerGender.Female:
@@ -137,7 +158,8 @@ namespace Binoculars
 
 		private void SetVisibility(bool visible)
 		{
-			if (binoculars is null || arms is null || strap is null) return;
+			if (binoculars == null || arms == null || strap == null) 
+				return;
 			binoculars.SetActive(visible);
 			arms.SetActive(visible);
 			strap.SetActive(visible);
@@ -151,7 +173,8 @@ namespace Binoculars
 
 		private void StartZoom()
 		{
-			if (GameManager.GetVpFPSCamera().IsZoomed) return;
+			if (GameManager.GetVpFPSCamera().IsZoomed) 
+				return;
 
 			PlayerUtils.FreezePlayer();
 			ZoomCamera();
@@ -161,7 +184,8 @@ namespace Binoculars
 
 		private void EndZoom()
 		{
-			if (!GameManager.GetVpFPSCamera().IsZoomed) return;
+			if (!GameManager.GetVpFPSCamera().IsZoomed) 
+				return;
 			PlayerUtils.UnfreezePlayer();
 			RestoreCamera();
 			HideOverlay();
@@ -170,7 +194,8 @@ namespace Binoculars
 
 		private void HideOverlay()
 		{
-			if (texture == null) return;
+			if (texture == null) 
+				return;
 
 			Object.Destroy(texture);
 			texture = null;
