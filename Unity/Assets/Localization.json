@@ -5,7 +5,8 @@
                             "Russian" : "Бинокль",
                             "Turkish" : "Dürbün",
 							"Polish" : "Lornetka",
-                            "French (France)" : "Jumelles"
+                            "French (France)" : "Jumelles",
+                            "Simplified Chinese" : "双目望远镜"
     },
     "GAMEPLAY_BinocularsDescription" : {
                             "English" : "Old binoculars, that still seem to work quite well.",
@@ -13,6 +14,7 @@
                             "Russian" : "Старый бинокль, который до сих пор, кажется, работает довольно хорошо.",
                             "Turkish" : "Eski bir dürbün, hala oldukça iyi gibi görünüyor.",
 							"Polish" : "Stara lornetka, nadal działa całkiem dobrze",
-                            "French (France)" : "De vieilles jumelles, qui semblent encore fonctionner assez bien."
+                            "French (France)" : "De vieilles jumelles, qui semblent encore fonctionner assez bien.",
+	                                "Simplified Chinese" : "旧的双筒望远镜，看起来仍然很好用。"
     }
 }
