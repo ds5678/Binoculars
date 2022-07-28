@@ -8,19 +8,18 @@ namespace Binoculars
 	public class AnimatedBinoculars
 	{
 		private float originalFOV;
-		private UITexture texture;
-		private GameObject arms;
-		private GameObject binoculars;
-		private GameObject strap;
-		Animator anim;
+		private UITexture? texture;
+		private GameObject? arms;
+		private GameObject? binoculars;
+		private GameObject? strap;
+		Animator? anim;
 		float a = 0.5f;
 		float f = 0.0f;
 		int i = 0;
-		bool showingModel = true;
 		bool runIdleCoroutine = true;
 		private static readonly string[] states = new string[] { "offscreen", "bring", "putDown", "idleRare", "idleTree", "ready", "lensZoom", "lensZoom_back", "ready_back" };
 		bool isZoomed = false;
-		ModComponent.API.Components.ModBaseEquippableComponent EquippableModComponent;
+		ModComponent.API.Components.ModBaseEquippableComponent? EquippableModComponent;
 
 		public void OnPrimaryAction()
 		{
@@ -100,14 +99,23 @@ namespace Binoculars
 		void IdleFluc()
 		{
 			if (anim == null)
+			{
 				return;
+			}
 
 			if (f < 1.0f)
 			{
 				a += i == 0 ? 0.03f : -0.03f; // add if i is 0, otherwise substract
 
-				if (a > 0.9f) i = 1;
-				if (a < 0.1f) i = 0;
+				if (a > 0.9f)
+				{
+					i = 1;
+				}
+
+				if (a < 0.1f)
+				{
+					i = 0;
+				}
 
 				anim.SetFloat("idle_random", a);
 
@@ -120,29 +128,38 @@ namespace Binoculars
 			}
 		}
 
-
-
 		void OnUpdate()
 		{
 			try
 			{
-				if (anim == null || anim.runtimeAnimatorController == null) 
+				if (anim == null || anim.runtimeAnimatorController == null)
+				{
 					return;
+				}
 
 				anim.GetAnimatorStateInfo(0, StateInfoIndex.CurrentState, out AnimatorStateInfo info);
 
-				if (info.IsName("lensZoom") && runIdleCoroutine) isZoomed = true;
-				else isZoomed = false;
+				isZoomed = info.IsName("lensZoom") && runIdleCoroutine;
 
-				if (isZoomed) StartZoom();
-				else EndZoom();
+				if (isZoomed)
+				{
+					StartZoom();
+				}
+				else
+				{
+					EndZoom();
+				}
 			}
-			catch { return; }
+			catch { }
 		}
 
 		private void InitializeGameObjects()
 		{
-			if (EquippableModComponent == null || EquippableModComponent.EquippedModel == null) return;
+			if (EquippableModComponent == null || EquippableModComponent.EquippedModel == null)
+			{
+				return;
+			}
+
 			switch (PlayerUtils.GetPlayerGender())
 			{
 				case PlayerGender.Female:
@@ -160,12 +177,12 @@ namespace Binoculars
 
 		private void SetVisibility(bool visible)
 		{
-			if (binoculars == null || arms == null || strap == null) 
-				return;
-			binoculars.SetActive(visible);
-			arms.SetActive(visible);
-			strap.SetActive(visible);
-			showingModel = visible;
+			if (binoculars != null && arms != null && strap != null)
+			{
+				binoculars.SetActive(visible);
+				arms.SetActive(visible);
+				strap.SetActive(visible);
+			}
 		}
 
 		private static void ShowButtonPopups()
@@ -175,32 +192,33 @@ namespace Binoculars
 
 		private void StartZoom()
 		{
-			if (GameManager.GetVpFPSCamera().IsZoomed) 
-				return;
-
-			PlayerUtils.FreezePlayer();
-			ZoomCamera();
-			ShowOverlay();
-			SetVisibility(false);
+			if (!GameManager.GetVpFPSCamera().IsZoomed)
+			{
+				PlayerUtils.FreezePlayer();
+				ZoomCamera();
+				ShowOverlay();
+				SetVisibility(false);
+			}
 		}
 
 		private void EndZoom()
 		{
-			if (!GameManager.GetVpFPSCamera().IsZoomed) 
-				return;
-			PlayerUtils.UnfreezePlayer();
-			RestoreCamera();
-			HideOverlay();
-			SetVisibility(true);
+			if (GameManager.GetVpFPSCamera().IsZoomed)
+			{
+				PlayerUtils.UnfreezePlayer();
+				RestoreCamera();
+				HideOverlay();
+				SetVisibility(true);
+			}
 		}
 
 		private void HideOverlay()
 		{
-			if (texture == null) 
-				return;
-
-			Object.Destroy(texture);
-			texture = null;
+			if (texture != null)
+			{
+				Object.Destroy(texture);
+				texture = null;
+			}
 		}
 
 		private void RestoreCamera()
@@ -220,7 +238,7 @@ namespace Binoculars
 			vp_FPSCamera camera = GameManager.GetVpFPSCamera();
 			originalFOV = camera.m_RenderingFieldOfView;
 			camera.ToggleZoom(true);
-			camera.SetFOVFromOptions(originalFOV * Settings.GetFovScalar());
+			camera.SetFOVFromOptions(originalFOV * BinocularsSettings.Instance.GetFovScalar());
 		}
 	}
 }
