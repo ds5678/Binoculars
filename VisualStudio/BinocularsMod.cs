@@ -1,12 +1,11 @@
 ﻿using MelonLoader;
 
-namespace Binoculars
+namespace Binoculars;
+
+internal sealed class BinocularsMod : MelonMod
 {
-	internal sealed class BinocularsMod : MelonMod
+	public override void OnApplicationStart()
 	{
-		public override void OnApplicationStart()
-		{
-			BinocularsSettings.Instance.AddToModSettings("Binoculars");
-		}
+		BinocularsSettings.Instance.AddToModSettings("Binoculars");
 	}
 }

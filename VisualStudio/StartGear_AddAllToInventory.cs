@@ -2,17 +2,16 @@
 using HarmonyLib;
 using Hinterland;
 
-namespace Binoculars
+namespace Binoculars;
+
+[HarmonyPatch(typeof(StartGear), nameof(StartGear.AddAllToInventory))]
+internal static class StartGear_AddAllToInventory
 {
-	[HarmonyPatch(typeof(StartGear), nameof(StartGear.AddAllToInventory))]
-	internal static class StartGear_AddAllToInventory
+	private static void Postfix()
 	{
-		private static void Postfix()
+		if (BinocularsSettings.Instance.startWithBinoculars)
 		{
-			if (BinocularsSettings.Instance.startWithBinoculars)
-			{
-				GameManager.GetPlayerManagerComponent().InstantiateItemInPlayerInventory("GEAR_Binoculars");
-			}
+			GameManager.GetPlayerManagerComponent().InstantiateItemInPlayerInventory("GEAR_Binoculars");
 		}
 	}
 }
