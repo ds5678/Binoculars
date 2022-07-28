@@ -4,7 +4,7 @@
                             "German" : "Fernglas",
                             "Russian" : "Бинокль",
                             "Turkish" : "Dürbün",
-							"Polish" : "Lornetka",
+                            "Polish" : "Lornetka",
                             "French (France)" : "Jumelles",
                             "Simplified Chinese" : "双目望远镜"
     },
@@ -13,8 +13,8 @@
                             "German" : "Ein altes Fernglas, das immer noch gut zu funktionieren scheint.",
                             "Russian" : "Старый бинокль, который до сих пор, кажется, работает довольно хорошо.",
                             "Turkish" : "Eski bir dürbün, hala oldukça iyi gibi görünüyor.",
-							"Polish" : "Stara lornetka, nadal działa całkiem dobrze",
+                            "Polish" : "Stara lornetka, nadal działa całkiem dobrze",
                             "French (France)" : "De vieilles jumelles, qui semblent encore fonctionner assez bien.",
-	                                "Simplified Chinese" : "旧的双目望远镜，看起来仍然很好用。"
+                            "Simplified Chinese" : "旧的双目望远镜，看起来仍然很好用。"
     }
 }
