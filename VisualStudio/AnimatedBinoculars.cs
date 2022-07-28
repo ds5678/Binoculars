@@ -1,4 +1,6 @@
-﻿using ModComponent.Utils;
+﻿extern alias Hinterland;
+using Hinterland;
+using ModComponent.Utils;
 using UnityEngine;
 
 namespace Binoculars
